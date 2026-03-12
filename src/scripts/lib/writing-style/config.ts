@@ -25,6 +25,15 @@ const getSingle = (args: string[], key: string): string | undefined => {
 
 const hasFlag = (args: string[], key: string): boolean => args.includes(key);
 
+const parseNumericArg = (raw: string | undefined, flag: string): number | undefined => {
+  if (raw === undefined) return undefined;
+  const value = Number(raw);
+  if (!Number.isFinite(value)) {
+    throw new Error(`Invalid value for ${flag}: expected a finite number, got "${raw}".`);
+  }
+  return value;
+};
+
 export const parseCliArgs = (argv: string[]): CliOptions => {
   const input = getArgValue(argv, '--input');
   const compare = getArgValue(argv, '--compare');
@@ -46,12 +55,12 @@ export const parseCliArgs = (argv: string[]): CliOptions => {
     include: getArgValue(argv, '--include'),
     exclude: getArgValue(argv, '--exclude'),
     extensions: extensionsRaw ? extensionsRaw.split(',').map((entry) => entry.trim()).filter(Boolean) : undefined,
-    recentWeight: getSingle(argv, '--recent-weight') ? Number(getSingle(argv, '--recent-weight')) : undefined,
-    minWords: getSingle(argv, '--min-words') ? Number(getSingle(argv, '--min-words')) : undefined,
+    recentWeight: parseNumericArg(getSingle(argv, '--recent-weight'), '--recent-weight'),
+    minWords: parseNumericArg(getSingle(argv, '--min-words'), '--min-words'),
     stopwords: getSingle(argv, '--stopwords'),
     domainWords: getSingle(argv, '--domain-words'),
     tropeWords: getSingle(argv, '--trope-words'),
-    topN: getSingle(argv, '--top-n') ? Number(getSingle(argv, '--top-n')) : undefined,
+    topN: parseNumericArg(getSingle(argv, '--top-n'), '--top-n'),
     mode,
     verbose: hasFlag(argv, '--verbose'),
     configPath: getSingle(argv, '--config'),

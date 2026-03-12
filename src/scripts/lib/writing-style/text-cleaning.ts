@@ -15,7 +15,10 @@ export const cleanProseText = (text: string): string => {
     .replace(URL_LINE_RE, ' ')
     .replace(/^\s*[-_*]{3,}\s*$/gm, ' ')
     .replace(/\|/g, ' ')
-    .replace(/\s+/g, ' ')
+    // Normalize spaces and tabs, but preserve line breaks and paragraph boundaries
+    .replace(/[ \t]+/g, ' ')
+    .replace(/[ \t]*\n[ \t]*/g, '\n')
+    .replace(/\n{3,}/g, '\n\n')
     .trim();
 };
 

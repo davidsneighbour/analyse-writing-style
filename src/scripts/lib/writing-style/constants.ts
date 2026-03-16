@@ -27,7 +27,7 @@ Options:
   --include <glob>            Include glob (repeatable)
   --exclude <glob>            Exclude glob (repeatable)
   --extensions <.md,.txt>     Comma separated extensions
-  --recent-weight <number>
+  --recent-weight <number>    (no effect yet — weighting is not yet implemented)
   --min-words <number>
   --stopwords <path>
   --domain-words <path>

@@ -69,6 +69,10 @@ const run = async (): Promise<void> => {
     throw new Error('Compare mode requires at least one --compare path.');
   }
 
+  if (cli.recentWeight !== undefined || fileConfig?.recentWeight !== undefined) {
+    console.warn('Warning: recentWeight is not yet implemented and currently has no effect on the analysis.');
+  }
+
   const lexicons: LexiconSets = {
     stopwords: await loadWordList(config.stopwordsPath),
     domainWords: await loadWordList(config.domainWordsPath),

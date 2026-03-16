@@ -1,0 +1,18 @@
+{
+  "name": "analyse-writing-style",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "analyse": "tsx src/scripts/analyse-writing-style.ts",
+    "test": "tsx --test tests/**/*.test.ts"
+  },
+  "dependencies": {
+    "fast-glob": "^3.3.3"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.2"
+  }
+}

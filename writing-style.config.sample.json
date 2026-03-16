@@ -1,0 +1,10 @@
+{
+  "extensions": [".md", ".mdx", ".txt"],
+  "exclude": ["**/node_modules/**", "**/.git/**", "**/dist/**", "**/reports/**"],
+  "minWords": 20,
+  "topN": 15,
+  "recentWeight": 1,
+  "stopwordsPath": "tests/fixtures/writing-style/stopwords.txt",
+  "domainWordsPath": "tests/fixtures/writing-style/domain-words.txt",
+  "tropeWordsPath": "tests/fixtures/writing-style/trope-words.txt"
+}

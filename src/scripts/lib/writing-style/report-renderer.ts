@@ -75,8 +75,15 @@ export const renderMarkdownReport = (result: AnalysisResult): string => {
   sections.push(renderCorpusSections(result.primary));
 
   if (result.compare) {
+    const comparatorNames = result.compare.comparators.map((c) => c.corpusName).join(', ');
     sections.push('## Comparison summary', '');
-    sections.push(...result.compare.distinctiveTraits.map((line) => `- ${line}`), '');
+    sections.push(
+      `- Primary corpus: **${result.compare.primary.corpusName}**`,
+      `- Compared against: ${comparatorNames}`,
+      `- Distinctive traits found: ${result.compare.distinctiveTraits.length}`,
+      `- Shared traits found: ${result.compare.sharedTraits.length}`,
+      '',
+    );
     sections.push('## Distinctive primary-corpus traits', '');
     sections.push(...result.compare.distinctiveTraits.map((line) => `- ${line}`), '');
     sections.push('## Shared traits across corpora', '');
